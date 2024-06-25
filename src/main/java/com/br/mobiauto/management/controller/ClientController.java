@@ -3,6 +3,7 @@ package com.br.mobiauto.management.controller;
 import com.br.mobiauto.management.dto.api.request.ClientRequestDTO;
 import com.br.mobiauto.management.dto.api.response.ClientResponseDTO;
 import com.br.mobiauto.management.service.ClientService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/clients")
+@Tag(name = "Clientes")
 public class ClientController {
 
     @Autowired

@@ -19,7 +19,7 @@ public class StoreDB {
 
     private String nomeSocial;
 
-    @OneToMany(mappedBy = "resale", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "resale", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<OportunityDB> opportunities;
 
 }
