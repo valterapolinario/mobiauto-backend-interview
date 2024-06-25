@@ -35,7 +35,7 @@ public class OportunityDB {
 
     @ManyToOne
     @JoinColumn(name = "id_resale")
-    private Store resale;
+    private StoreDB resale;
 
     @ManyToOne
     @JoinColumn(name = "id_responsible ")
