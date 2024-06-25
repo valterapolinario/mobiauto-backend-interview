@@ -23,5 +23,9 @@ public class UserDB {
     @Enumerated(EnumType.STRING)
     private UserPositionEnum position;
 
+    @ManyToOne
+    @JoinColumn(name = "id_store")
+    private StoreDB store;
+
 
 }
