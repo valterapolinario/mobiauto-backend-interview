@@ -58,6 +58,10 @@ public class UserServiceImpl implements UserService {
                 .consultById(request.storeId()).orElseThrow(
                         () -> new GeneralNotFoundException("Loja não encontrada com o id : " + request.storeId(), request.storeId()));
 
+        if (repository.existsByEmail(request.email())) {
+            throw new GeneralNotFoundException("E-mail já cadastrado", request.email());
+        }
+
         UserDB userTemp = (UserDB) redisTemplate.opsForValue().get(requisicionKey.toString());
         if (Objects.nonNull(userTemp)) {
             return mapper.toResponse(userTemp);
@@ -77,6 +81,11 @@ public class UserServiceImpl implements UserService {
         return repository
                 .findById(id)
                 .map(userDB -> {
+
+                    if (!Objects.equals(userDB.getEmail(), request.email())
+                            && repository.existsByEmail(request.email())) {
+                        throw new GeneralNotFoundException("E-mail já cadastrado", request.email());
+                    }
                     StoreDB temp = storeService
                             .consultById(request.storeId()).orElseThrow(
                                     () -> new GeneralNotFoundException("Loja não encontrada com o id : " + request.storeId(), request.storeId()));
