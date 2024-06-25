@@ -10,7 +10,7 @@ app:
         password: ${REDIS_PASSWORD:}
 spring:
     application:
-        name: poc.payment
+        name: mobiauto.management
     datasource:
         url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/paymentdb
         username: admin

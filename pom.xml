@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -11,7 +11,7 @@
     <groupId>com.br</groupId>
     <artifactId>mobiauto.management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>poc.payment</name>
+    <name>mobiauto.management</name>
     <description>Projeto visando uma poc para um sistema de gestao simplificado</description>
     <properties>
         <java.version>17</java.version>
@@ -22,10 +22,10 @@
         <springdoc.version>2.0.4</springdoc.version>
     </properties>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-mongodb</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-data-mongodb</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -121,12 +121,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-<!--                    <excludes>-->
-<!--                        <exclude>-->
-<!--                            <groupId>org.projectlombok</groupId>-->
-<!--                            <artifactId>lombok</artifactId>-->
-<!--                        </exclude>-->
-<!--                    </excludes>-->
+                    <!--                    <excludes>-->
+                    <!--                        <exclude>-->
+                    <!--                            <groupId>org.projectlombok</groupId>-->
+                    <!--                            <artifactId>lombok</artifactId>-->
+                    <!--                        </exclude>-->
+                    <!--                    </excludes>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -151,7 +151,7 @@
                         <dependency>
                             <groupId>org.projectlombok</groupId>
                             <artfactId>lombok-mapstruct-binding</artfactId>
-                            <version> ${lombok-bindigng.version}</version>
+                            <version>${lombok-bindigng.version}</version>
                         </dependency>
                     </annotationProcessorPaths>
                     <compilerArgs>
