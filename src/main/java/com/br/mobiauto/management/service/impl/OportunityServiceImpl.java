@@ -77,7 +77,7 @@ public class OportunityServiceImpl implements OportunityService {
     @Transactional
     public void assignResponsible(Long id, Long userId) {
         UserDB responsible = dependencyService.getUserById(userId);
-        if(!responsible.getPosition().isAssistent()){
+        if (!responsible.getPosition().isAssistent()) {
             throw new ApiBussinesException(String.format("Cargo de '%s' nao  e elegivel para assumir responsabilidade", responsible.getPosition().getDescription()));
         }
         repository.findById(id).ifPresentOrElse(entity -> {
@@ -110,8 +110,6 @@ public class OportunityServiceImpl implements OportunityService {
 
     @Override
     public List<OportunityDB> getOpportunityWithoutResponsibility() {
-        List<OportunityDB>test = repository.findAllByResponsible_IdIsNull();
-        List<OportunityDB>test2 = repository.findByResponsibleNull();
-        return  test;
+        return repository.findAllByResponsible_IdIsNull();
     }
 }

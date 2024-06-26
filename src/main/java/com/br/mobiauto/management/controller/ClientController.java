@@ -16,16 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/clients")
 @Tag(name = "Clientes")
 public class ClientController {
-
     @Autowired
     ClientService service;
 
-    @Autowired
-    UpdateOpportunities job;
-
     @GetMapping
     public ResponseEntity<Page<ClientResponseDTO>> listAll(Pageable pageable) {
-        job.updateOportunities();
         return ResponseEntity.ok().body(service.consultAll(pageable));
     }
 
