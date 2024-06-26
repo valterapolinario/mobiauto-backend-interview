@@ -10,14 +10,14 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     @Mapping(target = "id", ignore = true)
-    UserDB toModel(UserRequestDTO request, StoreDB store );
+    UserDB toModel(UserRequestDTO request, StoreDB store);
 
     @Mapping(target = "storeName", source = "store.nomeSocial")
     @Mapping(target = "storeId", source = "store.id")
     UserResponseDTO toResponse(UserDB model);
 
-    @Mapping(target = "store",source = "store")
-    @Mapping(target = "id",source = "id")
+    @Mapping(target = "store", source = "store")
+    @Mapping(target = "id", source = "id")
     UserDB toModelUpdate(Long id, UserRequestDTO request, StoreDB store);
 
 }

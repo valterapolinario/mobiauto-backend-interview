@@ -11,6 +11,7 @@ import com.br.mobiauto.management.service.UserService;
 import com.br.mobiauto.management.utils.EncriptUtils;
 import com.br.mobiauto.management.utils.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,18 +25,18 @@ import static java.util.concurrent.TimeUnit.MINUTES;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Autowired
     private StoreService storeService;
-
-    @Autowired
     private UserMapper mapper;
-
-    @Autowired
     private UserRepository repository;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    public UserServiceImpl(@Lazy StoreService storeService, UserMapper mapper, UserRepository repository, RedisTemplate<String, Object> redisTemplate) {
+        this.storeService = storeService;
+        this.mapper = mapper;
+        this.repository = repository;
+        this.redisTemplate = redisTemplate;
+    }
 
     @Override
     public Page<UserResponseDTO> consultAll(Pageable pageable) {
@@ -109,5 +110,10 @@ public class UserServiceImpl implements UserService {
             redisTemplate.delete(requisitionKey);
             redisTemplate.delete("user:" + id + ":requisitionKey");
         }
+    }
+
+    @Override
+    public boolean existsByStoreId(Long id) {
+        return repository.existsByStore_Id(id);
     }
 }

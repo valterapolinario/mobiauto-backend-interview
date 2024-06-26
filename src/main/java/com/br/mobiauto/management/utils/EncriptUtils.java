@@ -1,4 +1,5 @@
 package com.br.mobiauto.management.utils;
+
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.stereotype.Component;
 
@@ -10,11 +11,9 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class EncriptUtils {
 
-    private static String key = "0123456789abcdef0123456789abcdef";
-
-    private static String initVector = "abcdef9876543210";
-
     private static final String UTF8 = StandardCharsets.UTF_8.displayName();
+    private static String key = "0123456789abcdef0123456789abcdef";
+    private static String initVector = "abcdef9876543210";
 
     public static String encrypt(String value) {
         try {

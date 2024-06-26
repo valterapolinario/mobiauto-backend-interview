@@ -23,7 +23,7 @@ public class UserDB {
     @Enumerated(EnumType.STRING)
     private UserPositionEnum position;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_store")
     private StoreDB store;
 

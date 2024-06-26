@@ -73,10 +73,23 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
                         (ZoneId
                                 .of("America/Sao_Paulo"))
                 .truncatedTo(SECONDS));
-        detail.setProperty("value not found : ",ex.getValueNotFound());
+        detail.setProperty("value not found : ", ex.getValueNotFound());
         detail.setDetail(ex.getMessage());
         return ResponseEntity.status(NOT_FOUND).body(detail);
     }
 
+    @ExceptionHandler(DatabaseRulesException.class)
+    public ResponseEntity<Object> handleDataBaseException(DatabaseRulesException ex) {
+        ProblemDetail detail = ProblemDetail.forStatus(CONFLICT);
+        detail.setTitle("a conflict occurred in the database rules");
+        detail.setStatus(CONFLICT.value());
+        detail.setProperty("time", LocalDateTime.now
+                        (ZoneId
+                                .of("America/Sao_Paulo"))
+                .truncatedTo(SECONDS));
+        detail.setProperty("value in conflict : ", ex.getValueForConflict());
+        detail.setDetail(ex.getMessage());
+        return ResponseEntity.status(NOT_FOUND).body(detail);
+    }
 
 }
