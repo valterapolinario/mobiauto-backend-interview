@@ -8,6 +8,8 @@ app:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:}
+  sched:
+    cron: ${CRON_SCHED:0 0 18 * * *}
 spring:
   application:
     name: mobiauto.management
