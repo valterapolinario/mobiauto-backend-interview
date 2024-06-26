@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService, UserDependencyService {
 
     @Override
     public Page<UserResponseDTO> consultAll(Pageable pageable) {
+        UserDB result = repository.findUserWithLeastOpportunitiesInProgress();
         return repository
                 .findAll(pageable)
                 .map(mapper::toResponse);
