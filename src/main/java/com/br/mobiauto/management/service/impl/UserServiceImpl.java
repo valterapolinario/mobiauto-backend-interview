@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService, UserDependencyService {
 
     @Override
     public Page<UserResponseDTO> consultAll(Pageable pageable) {
-        UserDB result = repository.findUserWithLeastOpportunitiesInProgress();
         return repository
                 .findAll(pageable)
                 .map(mapper::toResponse);
@@ -123,5 +122,10 @@ public class UserServiceImpl implements UserService, UserDependencyService {
     public UserDB getUserById(Long id) {
         return repository.findById(id).orElseThrow(
                 () -> new GeneralNotFoundException("Usuario não encontrado com o id : " + id, id));
+    }
+
+    @Override
+    public UserDB getUserForResponsible() {
+        return repository.findUserWithLeastOpportunitiesInProgress();
     }
 }

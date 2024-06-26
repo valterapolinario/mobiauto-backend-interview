@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-26T13:10:16-0300",
+    date = "2024-06-26T18:20:06-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.6 (Azul Systems, Inc.)"
 )
 @Component
@@ -21,10 +21,6 @@ public class ClientMapperImpl implements ClientMapper {
         }
 
         ClientDB clientDB = new ClientDB();
-
-        clientDB.setName( request.name() );
-        clientDB.setEmail( request.email() );
-        clientDB.setPhone( request.phone() );
 
         return clientDB;
     }
@@ -39,10 +35,6 @@ public class ClientMapperImpl implements ClientMapper {
         String email = null;
         String phone = null;
 
-        name = model.getName();
-        email = model.getEmail();
-        phone = model.getPhone();
-
         ClientResponseDTO clientResponseDTO = new ClientResponseDTO( name, email, phone );
 
         return clientResponseDTO;
@@ -55,13 +47,6 @@ public class ClientMapperImpl implements ClientMapper {
         }
 
         ClientDB clientDB = new ClientDB();
-
-        if ( request != null ) {
-            clientDB.setName( request.name() );
-            clientDB.setEmail( request.email() );
-            clientDB.setPhone( request.phone() );
-        }
-        clientDB.setId( id );
 
         return clientDB;
     }

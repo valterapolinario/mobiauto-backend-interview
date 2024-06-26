@@ -20,6 +20,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static com.br.mobiauto.management.model.StatusOportunityEnum.IN_PROGRESS;
 
 @Service
@@ -95,5 +97,21 @@ public class OportunityServiceImpl implements OportunityService {
         } else {
             repository.deleteById(id);
         }
+    }
+
+    @Override
+    public void assignResponsibleForSched(OportunityDB entity, UserDB responsible) {
+        entity.setResponsible(responsible);
+        entity.setDateOfAssignment(DateUtils.now());
+        entity.setStatus(IN_PROGRESS);
+        repository.save(entity);
+
+    }
+
+    @Override
+    public List<OportunityDB> getOpportunityWithoutResponsibility() {
+        List<OportunityDB>test = repository.findAllByResponsible_IdIsNull();
+        List<OportunityDB>test2 = repository.findByResponsibleNull();
+        return  test;
     }
 }

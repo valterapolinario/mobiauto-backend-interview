@@ -7,4 +7,6 @@ public interface UserDependencyService {
     boolean existsByStoreId(Long storeId);
 
     UserDB getUserById(Long id);
+
+    UserDB getUserForResponsible();
 }

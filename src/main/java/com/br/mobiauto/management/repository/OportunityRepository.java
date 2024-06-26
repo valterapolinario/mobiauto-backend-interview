@@ -8,4 +8,8 @@ import java.util.List;
 public interface OportunityRepository extends JpaRepository<OportunityDB, Long> {
 
     List<OportunityDB> findAllByResale_Id(Long id);
+
+    List<OportunityDB> findAllByResponsible_IdIsNull();
+
+    List<OportunityDB> findByResponsibleNull();
 }

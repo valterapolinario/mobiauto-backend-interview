@@ -2,6 +2,7 @@ package com.br.mobiauto.management.controller;
 
 import com.br.mobiauto.management.dto.api.request.ClientRequestDTO;
 import com.br.mobiauto.management.dto.api.response.ClientResponseDTO;
+import com.br.mobiauto.management.schedule.UpdateOpportunities;
 import com.br.mobiauto.management.service.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,12 @@ public class ClientController {
     @Autowired
     ClientService service;
 
+    @Autowired
+    UpdateOpportunities job;
+
     @GetMapping
     public ResponseEntity<Page<ClientResponseDTO>> listAll(Pageable pageable) {
+        job.updateOportunities();
         return ResponseEntity.ok().body(service.consultAll(pageable));
     }
 
