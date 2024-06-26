@@ -7,6 +7,7 @@ import com.br.mobiauto.management.model.StoreDB;
 import com.br.mobiauto.management.model.UserDB;
 import com.br.mobiauto.management.repository.UserRepository;
 import com.br.mobiauto.management.service.StoreService;
+import com.br.mobiauto.management.service.UserDependencyService;
 import com.br.mobiauto.management.service.UserService;
 import com.br.mobiauto.management.utils.EncriptUtils;
 import com.br.mobiauto.management.utils.mapper.UserMapper;
@@ -24,7 +25,7 @@ import java.util.UUID;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDependencyService {
     private StoreService storeService;
     private UserMapper mapper;
     private UserRepository repository;
@@ -115,5 +116,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existsByStoreId(Long id) {
         return repository.existsByStore_Id(id);
+    }
+
+    @Override
+    public UserDB getUserById(Long id) {
+        return repository.findById(id).orElseThrow(
+                () -> new GeneralNotFoundException("Usuario não encontrado com o id : " + id, id));
     }
 }

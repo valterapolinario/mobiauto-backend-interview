@@ -2,6 +2,7 @@ package com.br.mobiauto.management.service;
 
 import com.br.mobiauto.management.dto.api.request.UserRequestDTO;
 import com.br.mobiauto.management.dto.api.response.UserResponseDTO;
+import com.br.mobiauto.management.model.UserDB;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,7 +18,6 @@ public interface UserService {
 
     UserResponseDTO updateUser(Long id, UserRequestDTO request);
 
-    boolean existsByStoreId(Long storeId);
-
     void deleteUser(Long id);
+
 }

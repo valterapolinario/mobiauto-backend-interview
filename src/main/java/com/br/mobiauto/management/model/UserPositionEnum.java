@@ -13,4 +13,8 @@ public enum UserPositionEnum {
     OTHER("OUTRO");
 
     private String description;
+
+    public Boolean isAssistent() {
+        return ASSISTANT.equals(this);
+    }
 }

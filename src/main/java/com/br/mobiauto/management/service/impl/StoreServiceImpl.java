@@ -7,6 +7,7 @@ import com.br.mobiauto.management.exception.GeneralNotFoundException;
 import com.br.mobiauto.management.model.StoreDB;
 import com.br.mobiauto.management.repository.StoreRepository;
 import com.br.mobiauto.management.service.StoreService;
+import com.br.mobiauto.management.service.UserDependencyService;
 import com.br.mobiauto.management.service.UserService;
 import com.br.mobiauto.management.utils.mapper.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class StoreServiceImpl implements StoreService {
     private StoreRepository repository;
 
     @Autowired
-    private UserService userService;
+    private UserDependencyService userDependencyService;
 
     @Autowired
     private StoreMapper mapper;
@@ -79,13 +80,13 @@ public class StoreServiceImpl implements StoreService {
     public void delete(Long id) {
         consultById(id)
                 .ifPresentOrElse(entity -> {
-            if (userService.existsByStoreId(id)) {
-                throw new DatabaseRulesException("Não é possível excluir uma revenda com usuários vinculados", id);
-            }else{
-                repository.deleteById(id);
-            }
-        }, () -> {
-            throw new GeneralNotFoundException("revenda não encontrada para o id : " + id, id);
-        });
+                    if (userDependencyService.existsByStoreId(id)) {
+                        throw new DatabaseRulesException("Não é possível excluir uma revenda com usuários vinculados", id);
+                    } else {
+                        repository.deleteById(id);
+                    }
+                }, () -> {
+                    throw new GeneralNotFoundException("revenda não encontrada para o id : " + id, id);
+                });
     }
 }

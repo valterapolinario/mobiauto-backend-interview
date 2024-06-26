@@ -8,8 +8,8 @@ import lombok.Getter;
 public enum StatusOportunityEnum {
 
     NEW("NOVO"),
-    IN_PROGRESS("EM_ANDAMENTO"),
-    FINISHED("FINALIZADO");
+    IN_PROGRESS("EM_ATENDIMENTO"),
+    COMPLETED("CONCLUIDO");
 
     private String description;
 

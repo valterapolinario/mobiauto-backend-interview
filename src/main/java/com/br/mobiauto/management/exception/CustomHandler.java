@@ -52,6 +52,7 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(BAD_REQUEST).body(detail);
 
     }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrity(DataIntegrityViolationException ex) {
         ProblemDetail detail = ProblemDetail.forStatus(PRECONDITION_FAILED);
@@ -61,7 +62,20 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
                         (ZoneId
                                 .of("America/Sao_Paulo"))
                 .truncatedTo(SECONDS));
+        detail.setDetail(ex.getMessage());
         return ResponseEntity.status(PRECONDITION_FAILED).body(detail);
+    }
+    @ExceptionHandler(ApiBussinesException.class)
+    public ResponseEntity<Object> handleDataIntegrity(ApiBussinesException ex) {
+        ProblemDetail detail = ProblemDetail.forStatus(BAD_REQUEST);
+        detail.setTitle("bad request");
+        detail.setStatus(BAD_REQUEST.value());
+        detail.setProperty("time", LocalDateTime.now
+                        (ZoneId
+                                .of("America/Sao_Paulo"))
+                .truncatedTo(SECONDS));
+        detail.setDetail(ex.getMessage());
+        return ResponseEntity.status(BAD_REQUEST).body(detail);
     }
 
     @ExceptionHandler(GeneralNotFoundException.class)
