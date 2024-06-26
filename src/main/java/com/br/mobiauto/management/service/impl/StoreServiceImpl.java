@@ -79,13 +79,13 @@ public class StoreServiceImpl implements StoreService {
     public void delete(Long id) {
         consultById(id)
                 .ifPresentOrElse(entity -> {
-            if (userService.existsByStoreId(id)) {
-                throw new DatabaseRulesException("Não é possível excluir uma revenda com usuários vinculados", id);
-            }else{
-                repository.deleteById(id);
-            }
-        }, () -> {
-            throw new GeneralNotFoundException("revenda não encontrada para o id : " + id, id);
-        });
+                    if (userService.existsByStoreId(id)) {
+                        throw new DatabaseRulesException("Não é possível excluir uma revenda com usuários vinculados", id);
+                    } else {
+                        repository.deleteById(id);
+                    }
+                }, () -> {
+                    throw new GeneralNotFoundException("revenda não encontrada para o id : " + id, id);
+                });
     }
 }

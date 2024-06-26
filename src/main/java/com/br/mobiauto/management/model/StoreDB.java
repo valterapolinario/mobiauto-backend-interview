@@ -1,5 +1,6 @@
 package com.br.mobiauto.management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,7 +20,8 @@ public class StoreDB {
 
     private String nomeSocial;
 
-    @OneToMany(mappedBy = "resale", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "resale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<OportunityDB> opportunities;
 
 }

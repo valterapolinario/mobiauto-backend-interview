@@ -25,15 +25,15 @@ public class OportunityDB {
 
     private String motive;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_client")
     private ClientDB client;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_vehicle")
     private VehicleDB vehicle;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_resale")
     private StoreDB resale;
 
@@ -43,7 +43,7 @@ public class OportunityDB {
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime dateOfAssignemt;
+    private LocalDateTime dateOfAssignment;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
