@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface StoreMapper {
 
-//    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "id", ignore = true)
     StoreDB toModel(StoreReqquestDTO request);
 
 

@@ -4,10 +4,8 @@ import com.br.mobiauto.management.model.UserPositionEnum;
 import com.br.mobiauto.management.utils.jwt.JwtRequestFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -20,11 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-
-import java.util.Arrays;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -45,7 +38,7 @@ public class SecurityConfig {
                                     antMatcher("/v3/**")).permitAll()
                             .requestMatchers(antMatcher(HttpMethod.POST, "/auth/**")).permitAll()
                             .requestMatchers(HttpMethod.POST, "/revendas").hasAnyRole(UserPositionEnum.ADMIN.name(), UserPositionEnum.OWNER.name())
-                            .requestMatchers(HttpMethod.POST, "/usuarios").hasAnyRole(UserPositionEnum.ADMIN.name(), UserPositionEnum.OWNER.name(), UserPositionEnum.MANAGER.name())
+                            .requestMatchers(HttpMethod.POST, "/users").hasAnyRole(UserPositionEnum.ADMIN.name(), UserPositionEnum.OWNER.name(), UserPositionEnum.MANAGER.name())
                             .anyRequest()
                             .authenticated();
                 })

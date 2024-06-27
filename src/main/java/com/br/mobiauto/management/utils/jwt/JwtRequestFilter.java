@@ -55,42 +55,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             token = authorizationHeader.substring(7);
             username = jwtUtils.extractUsername(token);
         }
-
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-            if (jwtUtils.validateToken(token, userDetails)) {
-
-                Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-                List<SimpleGrantedAuthority> authorities = ((List<?>) claims.get("roles")).stream()
-                        .map(role -> new SimpleGrantedAuthority((String) role))
-                        .collect(Collectors.toList());
-
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            UserDetails authUser = userDetailsService.loadUserByUsername(username);
+            if (jwtUtils.validateToken(token, authUser)) {
+                UsernamePasswordAuthenticationToken userAuth =
+                        new UsernamePasswordAuthenticationToken(authUser, null, authUser.getAuthorities());
+                userAuth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(userAuth);
             }
         }
         filterChain.doFilter(request, response);
-    }
-
-    private String extractUsername(String token) {
-        return Jwts.parser()
-                .setSigningKey(secretKey)
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }
-
-    private boolean validateToken(String token) {
-        try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 }

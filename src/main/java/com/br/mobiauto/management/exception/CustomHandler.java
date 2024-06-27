@@ -1,8 +1,12 @@
 package com.br.mobiauto.management.exception;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -23,7 +28,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
-public class CustomHandler extends ResponseEntityExceptionHandler {
+public class CustomHandler extends ResponseEntityExceptionHandler implements AccessDeniedHandler {
 
     @Override
     @ResponseStatus(BAD_REQUEST)
@@ -110,4 +115,13 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>("Acesso não autorizado", HttpStatus.UNAUTHORIZED);
     }
 
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        response.getWriter().write("Access Denied: " + accessDeniedException.getMessage());
+        String json = String.format("{\"message\": \"%s\"}", "Acesso não autorizado: Token é inválido ou já expirou.");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+    }
 }
