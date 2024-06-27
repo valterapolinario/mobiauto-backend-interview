@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<UserDB, Long> {
 
@@ -23,5 +25,7 @@ public interface UserRepository extends JpaRepository<UserDB, Long> {
             "MAX(o.date_of_assignment) ASC " +
             "LIMIT 1", nativeQuery = true)
     UserDB findUserWithLeastOpportunitiesInProgress();
+
+    Optional<UserDB> findByEmail(String email);
 
 }

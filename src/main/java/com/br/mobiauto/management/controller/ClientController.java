@@ -5,6 +5,7 @@ import com.br.mobiauto.management.dto.api.response.ClientResponseDTO;
 import com.br.mobiauto.management.schedule.UpdateOpportunities;
 import com.br.mobiauto.management.service.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/clientes")
 @Tag(name = "Clientes")
 public class ClientController {
     @Autowired
@@ -30,7 +31,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<ClientResponseDTO> createClient(@RequestBody ClientRequestDTO request) {
+    public ResponseEntity<ClientResponseDTO> createClient(@RequestBody @Valid ClientRequestDTO request) {
         return ResponseEntity.ok().body(service.createClient(request));
     }
 

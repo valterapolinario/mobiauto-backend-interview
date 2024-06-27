@@ -27,5 +27,4 @@ public class UserDB {
     @JoinColumn(name = "id_store")
     private StoreDB store;
 
-
 }

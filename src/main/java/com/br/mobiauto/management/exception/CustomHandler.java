@@ -1,10 +1,8 @@
 package com.br.mobiauto.management.exception;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ProblemDetail;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -65,6 +63,7 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
         detail.setDetail(ex.getMessage());
         return ResponseEntity.status(PRECONDITION_FAILED).body(detail);
     }
+
     @ExceptionHandler(ApiBussinesException.class)
     public ResponseEntity<Object> handleDataIntegrity(ApiBussinesException ex) {
         ProblemDetail detail = ProblemDetail.forStatus(BAD_REQUEST);
@@ -104,6 +103,11 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
         detail.setProperty("value in conflict : ", ex.getValueForConflict());
         detail.setDetail(ex.getMessage());
         return ResponseEntity.status(NOT_FOUND).body(detail);
+    }
+
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
+        return new ResponseEntity<>("Acesso não autorizado", HttpStatus.UNAUTHORIZED);
     }
 
 }
