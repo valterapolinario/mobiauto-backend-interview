@@ -2,7 +2,6 @@ package com.br.mobiauto.management.controller;
 
 import com.br.mobiauto.management.dto.api.request.ClientRequestDTO;
 import com.br.mobiauto.management.dto.api.response.ClientResponseDTO;
-import com.br.mobiauto.management.schedule.UpdateOpportunities;
 import com.br.mobiauto.management.service.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

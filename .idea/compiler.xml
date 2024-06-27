@@ -21,16 +21,10 @@
         <module name="mobiauto.management" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="poc.elo" target="17" />
-      <module name="poc.payment" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="mobiauto.management" options="-parameters" />
-      <module name="poc.elo" options="-parameters" />
-      <module name="poc.payment" options="-parameters" />
     </option>
   </component>
 </project>

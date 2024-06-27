@@ -45,9 +45,10 @@ public class OportunityController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
     @PutMapping("/{id}/definir-responsavel/{usuarioId}")
-    public ResponseEntity<Void> assignResponsible(@PathVariable Long id,@PathVariable Long usuarioId) {
-        service.assignResponsible(id,usuarioId);
+    public ResponseEntity<Void> assignResponsible(@PathVariable Long id, @PathVariable Long usuarioId) {
+        service.assignResponsible(id, usuarioId);
         return ResponseEntity.noContent().build();
     }
 }

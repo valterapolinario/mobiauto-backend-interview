@@ -25,7 +25,7 @@ public class UserDB implements UserDetails {
 
     private String name;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     private String password;

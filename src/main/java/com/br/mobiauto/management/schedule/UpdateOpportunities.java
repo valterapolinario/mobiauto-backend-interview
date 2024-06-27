@@ -9,13 +9,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -32,10 +29,10 @@ public class UpdateOpportunities {
     private OportunityService oportunityService;
 
     @Transactional
-    @Scheduled(cron = "${app.sched.cron}",zone = TIME_ZONE)
-    @SchedulerLock(name = "atualizar oportunidades",lockAtMostFor = "PT6M",lockAtLeastFor = "PT5M")
+    @Scheduled(cron = "${app.sched.cron}", zone = TIME_ZONE)
+    @SchedulerLock(name = "atualizar oportunidades", lockAtMostFor = "PT6M", lockAtLeastFor = "PT5M")
     public void updateOportunities() {
-        try{
+        try {
             LOG.info("Atualizando oportunidades sem responsavel ");
             List<OportunityDB> opportunityWithoutResponsibility = oportunityService
                     .getOpportunityWithoutResponsibility();
@@ -47,12 +44,12 @@ public class UpdateOpportunities {
                     .forEach(oportunity -> {
                         LOG.info("Atualizando oportunidade com id : {}", oportunity.getId());
                         UserDB responsible = dependencyService.getUserForResponsible();
-                        LOG.info("Responsavel com id {} e com o cargo : {}", responsible.getId(),responsible.getPosition().getDescription());
-                        oportunityService.assignResponsibleForSched(oportunity,responsible);
+                        LOG.info("Responsavel com id {} e com o cargo : {}", responsible.getId(), responsible.getPosition().getDescription());
+                        oportunityService.assignResponsibleForSched(oportunity, responsible);
                     });
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.error("Erro ao atualizar oportunidades sem responsavel ", e.getMessage());
-        }finally {
+        } finally {
             LOG.info("Finalizando  job de atualização de oportunidades");
         }
 

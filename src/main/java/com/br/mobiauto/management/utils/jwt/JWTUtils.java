@@ -1,10 +1,10 @@
 package com.br.mobiauto.management.utils.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import io.jsonwebtoken.Claims;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Component
 public class JWTUtils {
 
-    private String secret= "dqY8HUEMqBoReYjU35ge/qhdFunjxzDipEYLrxXTgMU=";
+    private String secret = "dqY8HUEMqBoReYjU35ge/qhdFunjxzDipEYLrxXTgMU=";
 
     private Long expirationTime = 86400L;
 

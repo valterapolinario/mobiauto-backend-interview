@@ -8,7 +8,6 @@ import com.br.mobiauto.management.model.StoreDB;
 import com.br.mobiauto.management.repository.StoreRepository;
 import com.br.mobiauto.management.service.StoreService;
 import com.br.mobiauto.management.service.UserDependencyService;
-import com.br.mobiauto.management.service.UserService;
 import com.br.mobiauto.management.utils.mapper.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

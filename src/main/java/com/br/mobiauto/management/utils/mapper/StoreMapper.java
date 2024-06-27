@@ -4,12 +4,11 @@ import com.br.mobiauto.management.dto.api.request.StoreReqquestDTO;
 import com.br.mobiauto.management.dto.api.response.StoreResponseDTO;
 import com.br.mobiauto.management.model.StoreDB;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface StoreMapper {
 
-    @Mapping(target = "id", ignore = true)
+    //    @Mapping(target = "id", ignore = true)
     StoreDB toModel(StoreReqquestDTO request);
 
 

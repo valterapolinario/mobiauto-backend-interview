@@ -2,7 +2,6 @@ package com.br.mobiauto.management.controller;
 
 import com.br.mobiauto.management.dto.api.auth.AuthRequestDTO;
 import com.br.mobiauto.management.dto.api.auth.AuthResponseDTO;
-import com.br.mobiauto.management.model.UserDB;
 import com.br.mobiauto.management.utils.jwt.JWTUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
