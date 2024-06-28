@@ -17,16 +17,11 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <org.project.lombok.version.Version>1.18.16</org.project.lombok.version.Version>
-        <lombok-bindigng.version>1.18.16</lombok-bindigng.version>
+        <org.project.lombok.version.Version>0.2.0</org.project.lombok.version.Version>
+        <lombok-bindigng.version>0.2.0</lombok-bindigng.version>
         <springdoc.version>2.0.4</springdoc.version>
     </properties>
     <dependencies>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-data-mongodb</artifactId>-->
-        <!--        </dependency>-->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -34,10 +29,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
         <dependency>
@@ -110,13 +101,6 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.17.0</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.mysql</groupId>-->
-        <!--            <artifactId>mysql-connector-j</artifactId>-->
-        <!--            <version>5.1.15</version>-->
-        <!--            <scope>runtime</scope>-->
-        <!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -131,11 +115,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${springdoc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -178,12 +157,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>javax.xml.bind</groupId>-->
-        <!--            <artifactId>jaxb-api</artifactId>-->
-        <!--            <version>2.3.1</version>-->
-        <!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -203,11 +176,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <parameters>true</parameters>
                     <source>17</source>
                     <target>17</target>
+                    <parameters>true</parameters>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
@@ -221,7 +194,7 @@
                         </path>
                         <dependency>
                             <groupId>org.projectlombok</groupId>
-                            <artfactId>lombok-mapstruct-binding</artfactId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
                             <version>${lombok-bindigng.version}</version>
                         </dependency>
                     </annotationProcessorPaths>
@@ -231,6 +204,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>application</finalName>
     </build>
 
 </project>
