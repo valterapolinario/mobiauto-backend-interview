@@ -15,8 +15,8 @@ spring:
     name: mobiauto.management
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:mysql}:3306/mydatabase
-    username: admin
-    password: 123
+    username: myuser
+    password: mypassword
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
