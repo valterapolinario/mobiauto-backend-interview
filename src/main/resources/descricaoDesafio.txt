@@ -1,0 +1,45 @@
+Requisitos Técnicos do Sistema Mobiauto:
+O sistema Mobiauto tem como objetivo fornecer uma poderosa ferramenta de gestão de Revendas
+de veículos. Abaixo estão os requisitos técnicos essenciais para o desenvolvimento do sistema:
+• Gestão de Revendas:
+o Cada Revenda deve possuir um código identificador único.
+o O CNPJ da Revenda deve ser válido e único.
+o A Revenda deve ter um nome social.
+
+• Autenticação e Autorização:
+o Os usuários devem realizar login com base nas melhores práticas de segurança.
+o A base de usuários deve incluir código identificador, nome, e-mail (único) e senha.
+o Os usuários podem ter perfis associados às lojas, com cargos como Proprietário,
+Gerente ou Assistente.
+o Apenas administradores podem cadastrar novos usuários, salvos proprietários e
+gerentes que podem cadastrar usuários em sua loja.
+
+• Permissões de Usuários:
+o A edição manutenção de perfis só pode ser realizada por administradores ou
+Proprietários da loja.
+o Administradores têm permissão para executar todas as ações em todas as Revendas.
+o Usuários só podem acessar lojas que estão vinculados com seu devido cargo.
+
+• Gestão de Oportunidades:
+o Cada loja pode ter uma lista de oportunidades para atendimento/negociação.
+o Cada oportunidade deve possuir um código identificador único.
+o Cada oportunidade possui status que pode ser novo, em atendimento e concluído. O
+status inicial é novo e quando concluída, deve-se informar um motivo de conclusão.
+o Dados do cliente, como nome, e-mail e telefone, devem ser registrados para cada
+oportunidade.
+o Dados do veículo de interesse, como marca, modelo, versão e ano modelo, devem ser
+registrados para cada oportunidade.
+
+• Atendimento e Edição de Oportunidades:
+o O atendimento de uma oportunidade é realizado por um usuário da revenda.
+o O sistema deve ter a inteligência de distribuir as oportunidades sem responsável para
+os assistentes da loja em forma de fila. Onde o próximo a receber seja o que possui a
+menor quantidade de oportunidades em andamento e maior tempo sem receber
+uma oportunidade.
+o Proprietários e gerentes possuem permissão de transferir uma oportunidade para
+outro assistente.
+o Apenas o usuário associado à oportunidade pode editá-la, exceto para cargos de
+gerentes e proprietários que têm permissão para editar todas as oportunidades de
+sua loja.
+o Deve ser registrada a data de atribuição da oportunidade pelo seu responsável e a
+data de conclusão.

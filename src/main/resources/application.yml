@@ -1,0 +1,31 @@
+app:
+  kafka:
+    topics:
+      order:
+        transportadora: ${ORDER_TRANSFER_TOPIC:payment-topic}
+        groupId: ${NOTIFY_GROUP_ID:1}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+  sched:
+    cron: ${CRON_SCHED:0 0 18 * * *}
+spring:
+  application:
+    name: mobiauto.management
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:mysql}:3306/${MYSQL_DATABASE:mydatabase}
+    username: ${MYSQL_USERNAME:myuser}
+    password: ${MYSQL_PASSWORD:mypassword}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  output:
+    ansi:
+      enable: ALWAYS
